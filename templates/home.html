@@ -1,0 +1,23 @@
+{%  extends "index.html" %}
+{% block body %}
+    <div class="cont-text ">
+            <h2>Welcome</h2>
+            <a href="galeria.html" class="btn-bordes">Ir a Galeria</a>
+        </div>
+        <video autoplay loop muted class="vid-ind">
+            <source src="{{ url_for('static', filename='assets/vid-1980.mp4') }}" type="video/mp4">
+        </video>
+    <main class="carrtext">
+    <h2>Imagenes creadas por Ingeligencia Artificial.</h2><br>
+    <h3></h3>
+    <br>
+    <section class="carrsect">
+        <img src="../static/assets/carrousel/Slide-1.jpg" alt="1">
+        <img src="../static/assets/carrousel/Slide-2.jpg" alt="2">
+        <img src="../static/assets/carrousel/Slide-3.jpg" alt="3">
+        <img src="../static/assets/carrousel/Slide-4.jpg" alt="4">
+        <img src="../static/assets/carrousel/Slide-5.jpg" alt="5">
+    </section>
+    <br><br><br>
+</main>
+{% endblock %}

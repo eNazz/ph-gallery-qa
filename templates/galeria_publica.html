@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block body %}
+
+    <main>
+        <div class="ful-img" id="fulImgBox">
+            <img src="imgs/1.jpg" id="fulImg" alt="">
+            <span onclick="closeImg()">X</span>
+        </div>
+        <br><br><br>
+        <!-- Nueva sección para mostrar imágenes locales -->
+        <h1><span>Imágenes Locales</span></h1>
+        <div class="img-gallery">
+                <div class="img-gallery">
+                {% for imagen in imagenes %}
+                    <li class="list-group-item">
+                        <img src="{{ url_for('static', filename='imagenes/'+ imagen.ruta) }}" onclick="openFulImg(this.src)" alt="{{ imagen.titulo }}">
+                        <h5>{{ imagen.titulo }}</h5>
+                        <p>{{ imagen.autor }}</p>
+                        <p>{{ imagen.descripcion }}</p>
+                    </li>
+                {% endfor %}
+                </div>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block body %}
+    <br><br>
+
+<div style="height: fit-content">
+<h1><span>Subir imagen</span></h1>
+    <form action="/subirimg" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="titulo">Título:</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+      </div>
+
+      <div>
+        <label for="autor">Autor:</label>
+        <input type="text"  id="autor" name="autor" placeholder="Autor">
+      </div>
+
+      <div style="height: fit-content">
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" placeholder="Descripción" rows="10" cols="60" style="height: fit-content"></textarea>
+      </div>
+<br>
+      <div style="height: fit-content">
+        <label for="imagen">Imagen:</label>
+        <input type="file"  id="imagen" name="imagen" height="10px" style="height: fit-content">
+      </div>
+<br><br>
+      <button type="submit" class="btn-upload">Subir</button>
+    </form>
+  </div>
+    <br>
+  {% endblock %}

@@ -1,0 +1,24 @@
+CREATE TABLE "public"."imagenes" (
+  "id" serial NOT NULL,
+  "titulo" varchar(255) COLLATE "pg_catalog"."default",
+  "autor" varchar(255) COLLATE "pg_catalog"."default",
+  "descripcion" varchar(255) COLLATE "pg_catalog"."default",
+  "ruta" varchar(255) COLLATE "pg_catalog"."default",
+  CONSTRAINT "imagenes_pkey" PRIMARY KEY ("id")
+)
+;
+
+ALTER TABLE "public"."imagenes"
+  OWNER TO "postgres";
+
+  CREATE TABLE "public"."contacto" (
+  "contacto_id" serial NOT NULL,
+  "nombre" varchar(255) COLLATE "pg_catalog"."default",
+  "correo" varchar(255) COLLATE "pg_catalog"."default",
+  "celular" varchar(255) COLLATE "pg_catalog"."default",
+  "mensaje" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+
+ALTER TABLE "public"."contacto"
+  OWNER TO "postgres";

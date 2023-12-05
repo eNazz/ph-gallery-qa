@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sobrenosotros.css') }}">
+
+    <main class="about-us">
+        <div class="title">
+            <br>
+            <h1><span>Un poco sobre nosotros</span></h1>
+        </div>
+        <div class="container">
+            <div class="text-abus">
+                <div class="texto-cont">
+                    <h2><span>Sobre Nosotros</span></h2>
+                    <p>
+                        Bienvenidos a PhGallery, tu destino numero uno para descubrir y descargar imagenes de alta
+                        calidad,
+                        completamente libres de derechos de autor. Nos enorgullece ser tu fuente confiable de recursos
+                        visuales para
+                        proyectos creativos, personales y profesionales.s
+                    </p>
+                </div>
+                <div class="texto-cont">
+                    <h2>Nuestra Misión</h2>
+                    <p>
+                        En PhGallery, nuestra mision es democratizar el acceso a imagenes de calidad, eliminando las
+                        restricciones
+                        de
+                        derechos de autor y permitiendote utilizar estas imagenes de forma creativa en tus
+                        proyectos.Creemos en la
+                        belleza de la libertal visual y estamos comprometivos a brindarte una amplia variedad de
+                        imagenes de alta
+                        resolucion sin costo alguno.
+                    </p>
+                </div>
+                <div class="texto-cont">
+                    <h2>Nuestra Galeria de Imágenes</h2>
+                    <p>
+                        Nuestro galeria cuenta con una extensa y diversa coleccion de imagenes que abarca una amplia
+                        gama de
+                        categorias,
+                        desde naturaleza, viajes hasta negocios y estilo de vida. Todas nuestras Imagenes son
+                        cuidadosamente
+                        seleccionadas y revisadas para garantizar su calidad, para que puedas encontrar exactamente lo
+                        que necesitas
+                        para tu proximo proyecto.
+                    </p>
+                </div>
+
+            </div>
+            <div class="pex-image">
+                <img id="pexels-image" src="" alt="Imagen de Pexels">
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/sobrenosotros.js') }}"></script>
+
+    </main>
+{% endblock %}

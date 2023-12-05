@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contacto.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kranky">
+
+    <title> Ph Gallery </title>
+</head>
+
+<body>
+    <header class="header">
+        <h2 class="logo">
+            <a href="/" class="a"> {{ titulo }}</a>
+        </h2>
+        <button class="button">
+            <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+            </svg>
+        </button>
+        <nav class="navbar">
+            <ul class="ul">
+                <li><a class="li" href="/"> Inicio</a></li>
+                <li><a class="li" href="galeria"> Galeria</a></li>
+                <li><a class="li" href="subirform"> Subir Img.</a></li>
+                <li><a class="li" href="listar_imagen"> Galería Pública</a></li>
+                <li><a class="li" href="contact"> Contacto</a></li>
+                <li><a class="li" href="about-us"> Acerca de</a></li>
+            </ul>
+        </nav>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    </header>
+
+    {% block body %}
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="footer-left">
+            <p>&copy; 2023 Todos los derechos reservados.
+                <br>
+                <a href="https://www.linkedin.com/in/estebannazer/" target="_blank">Esteban Nazer</a>
+                <br>
+                <a href="https://www.linkedin.com/in/candela" target="_blank">Candela Guadalupe Aballay</a>
+                <br>
+                <a href="https://www.linkedin.com/in/" target="_blank">Sebastian Eula</a>
+            </p>
+        </div>
+        <div class="social-media">
+            <a href="https://www.facebook.com/ph.insomnia" target="_blank">Facebook</a>
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com/insomnia.rt/" target="_blank">Instagram</a>
+        </div>
+        <div class="footer-right">
+            <div class="page-info">
+                <br>
+                <p class="footer_derecha">Dirección: Calle Ejemplo 123, Ciudad Ejemplo</p>
+                <p class="footer_derecha">Teléfono: (123) 456-7890</p>
+                <p class="footer_derecha">Email: info@phgallery.com</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

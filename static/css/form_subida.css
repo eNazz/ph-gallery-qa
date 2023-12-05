@@ -1,0 +1,14 @@
+    .formulario {
+      width: 50%;
+      margin: 0 auto;
+    }
+    .titulo {
+      margin-bottom: 20px;
+    }
+    .campo {
+      margin-bottom: 10px;
+    }
+    .imagen {
+      width: 100%;
+      max-width: 500px;
+    }
