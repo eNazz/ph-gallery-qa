@@ -14,11 +14,11 @@ import psycopg2
 class Contacto_c:
     def __init__(self, host, port, database, user, password):
         self.conn = psycopg2.connect(
-            host=host,
-            port=port,
-            database=database,
-            user=user,
-            password=password,
+        host="database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com",
+        port=5432,
+        database="codoacodo",
+        user="tpfinal_seula",
+        password="TpF1n4l!PyTh0n$3b4",
         )
         self.cursor = self.conn.cursor()
 
@@ -53,7 +53,7 @@ class Contacto_c:
         self.conn.commit()
 
 
-cont = Contacto_c("localhost", "5432", "codoacodo", "postgres", "882311")
+cont = Contacto_c("database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com", "5432", "codoacodo", "tpfinal_seula", "TpF1n4l!PyTh0n$3b4")
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -130,11 +130,11 @@ def subirimg():
     import psycopg2
 
     conn = psycopg2.connect(
-        host="localhost",
+        host="database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com",
         port=5432,
         database="codoacodo",
-        user="postgres",
-        password="882311",
+        user="tpfinal_seula",
+        password="TpF1n4l!PyTh0n$3b4",
     )
     cur = conn.cursor()
 
@@ -157,25 +157,25 @@ def listar_imagen():
     import psycopg2
 
     conn = psycopg2.connect(
-        host="localhost",
+        host="database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com",
         port=5432,
         database="codoacodo",
-        user="postgres",
-        password="882311",
+        user="tpfinal_seula",
+        password="TpF1n4l!PyTh0n$3b4",
     )
     cur = conn.cursor()
 
     cur.execute(
         """
         SELECT
-          titulo,
-          autor,
-          descripcion,
-          ruta
+            titulo,
+            autor,
+            descripcion,
+            ruta
         FROM
-          imagenes
+            imagenes
         ORDER BY
-          titulo
+            titulo
         """
     )
 

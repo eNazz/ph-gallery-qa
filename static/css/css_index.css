@@ -99,7 +99,7 @@ nav a {
   }
 
   .header .navbar.activo {
-    height: 22vh;
+    height: 35vh;
   }
 
   .navbar.activo li {
@@ -160,8 +160,8 @@ nav a {
 
   .cont-text {
     position: absolute;
-    margin: 6rem 0;
-    height: 30%;
+    margin: 4rem 0;
+    height: 10%;
     font-size: 2vmax;
   }
 }

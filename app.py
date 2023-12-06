@@ -1,10 +1,18 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect
+from config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION
 from werkzeug.utils import secure_filename
 import os
+from dotenv import load_dotenv
 
-SECRET_KEY = os.urandom(24)
+load_dotenv()
+SECRET_KEY = os.getenv("FLASK_SECRET_KEY", os.urandom(24))
 
 app = Flask(__name__)
+
+app.config['AWS_ACCESS_KEY_ID'] = AWS_ACCESS_KEY_ID
+app.config['AWS_SECRET_ACCESS_KEY'] = AWS_SECRET_ACCESS_KEY
+app.config['AWS_REGION'] = AWS_REGION
+
 titulo = "PH Gallery"
 import psycopg2
 
@@ -14,11 +22,11 @@ import psycopg2
 class Contacto_c:
     def __init__(self, host, port, database, user, password):
         self.conn = psycopg2.connect(
-        host="database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com",
-        port=5432,
-        database="codoacodo",
-        user="tpfinal_seula",
-        password="TpF1n4l!PyTh0n$3b4",
+            host=os.getenv("DATABASE_HOST"),
+            port=os.getenv("DATABASE_PORT"),
+            database=os.getenv("DATABASE_NAME"),
+            user=os.getenv("DATABASE_USER"),
+            password=os.getenv("DATABASE_PASSWORD"),
         )
         self.cursor = self.conn.cursor()
 
@@ -52,6 +60,16 @@ class Contacto_c:
         self.cursor.execute(sql, valores)
         self.conn.commit()
 
+    def buscar(self, contacto_id):
+        sql = "SELECT * FROM public.contacto WHERE contacto_id = %s"
+        valores = [contacto_id]
+        self.cursor.execute(sql, valores)
+        contacto = self.cursor.fetchone()
+        if contacto is not None:
+            return contacto
+        else:
+            return None
+
 
 cont = Contacto_c("database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com", "5432", "codoacodo", "tpfinal_seula", "TpF1n4l!PyTh0n$3b4")
 
@@ -66,7 +84,7 @@ def contacto_view():
     return render_template('contact.html')
 
 
-@app.route('/contact', methods=['POST', 'PUT'])
+@app.route('/contact', methods=['POST'])
 def contacto():
     # Es uno nuevo
     if request.method == 'POST':
@@ -77,7 +95,7 @@ def contacto():
         # Llama al el metodo para crear uno nuevo
         cont.guardar_mensaje(nombre, correo, celular, mensaje)
         mensaje_sql = "Su mensaje ha sido enviado. En breve uno de nuestros representantes se comunicara con Ud.Muchas gracias."
-    return render_template('contact.html', mensaje_sql=mensaje_sql)
+    return render_template('contact.html', mensaje_sql=mensaje_sql, metodo='POST')
 
 
 @app.route('/listar_contact')
@@ -89,6 +107,31 @@ def listar_contact():
 @app.route("/eliminar/<int:contacto_id>")
 def eliminar_contact(contacto_id):
     cont.eliminar_mensaje(contacto_id)
+    contactos = cont.listar_mensajes()
+    return render_template('contact_list.html', contactos=contactos)
+
+@app.route("/actualizar/<int:contacto_id>")
+def actualizar(contacto_id):
+    contacto =  cont.buscar(contacto_id)
+    contacto_id = contacto[0]
+    nombre = contacto[1]
+    correo= contacto[2]
+    celular= contacto[3]
+    mensaje= contacto[4]
+    return render_template('contact_edicion.html', contacto_id=contacto_id, nombre=nombre, correo=correo,celular=celular,mensaje=mensaje)
+
+@app.route("/actualizar_", methods=['POST'])
+def actualizar_():
+    # Es uno nuevo
+    if request.method == 'POST':
+        contacto_id = request.form["contacto_id"]
+        nombre = request.form["nombre"]
+        correo = request.form['correo']
+        celular = request.form['celular']
+        mensaje = request.form['mensaje']
+        # Llama al el metodo para crear uno nuevo
+        cont.actualizar_mensaje(nombre, correo, celular, mensaje, contacto_id)
+        mensaje_sql = "Datos actualizados."
     contactos = cont.listar_mensajes()
     return render_template('contact_list.html', contactos=contactos)
 
@@ -130,11 +173,11 @@ def subirimg():
     import psycopg2
 
     conn = psycopg2.connect(
-        host="database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com",
-        port=5432,
-        database="codoacodo",
-        user="tpfinal_seula",
-        password="TpF1n4l!PyTh0n$3b4",
+            host=os.getenv("DATABASE_HOST"),
+            port=os.getenv("DATABASE_PORT"),
+            database=os.getenv("DATABASE_NAME"),
+            user=os.getenv("DATABASE_USER"),
+            password=os.getenv("DATABASE_PASSWORD"),
     )
     cur = conn.cursor()
 
@@ -157,25 +200,25 @@ def listar_imagen():
     import psycopg2
 
     conn = psycopg2.connect(
-        host="database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com",
-        port=5432,
-        database="codoacodo",
-        user="tpfinal_seula",
-        password="TpF1n4l!PyTh0n$3b4",
+            host=os.getenv("DATABASE_HOST"),
+            port=os.getenv("DATABASE_PORT"),
+            database=os.getenv("DATABASE_NAME"),
+            user=os.getenv("DATABASE_USER"),
+            password=os.getenv("DATABASE_PASSWORD"),
     )
     cur = conn.cursor()
 
     cur.execute(
         """
         SELECT
-            titulo,
-            autor,
-            descripcion,
-            ruta
+          titulo,
+          autor,
+          descripcion,
+          ruta
         FROM
-            imagenes
+          imagenes
         ORDER BY
-            titulo
+          titulo
         """
     )
 
@@ -189,8 +232,9 @@ def listar_imagen():
         })
 
     conn.close()
-
     return render_template("galeria_publica.html", imagenes=imagenes)
+
+
 
 
 if __name__ == '__main__':
