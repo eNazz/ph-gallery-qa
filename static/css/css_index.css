@@ -377,7 +377,50 @@ a:hover {
   font-weight: bold;
 }
 
-/* Estilos para S3 Gallery */
+/* Estilos para Subir Imagenes en S3 */
+
+#fileInput {
+
+  height: 50px;
+  margin: 0;
+  padding: 13px;
+  justify-content: center;
+  margin-left: 0% ; 
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-self: center;
+  align-self: center  ;
+    
+}
+
+.btn-upload {
+  width: 90px;
+  padding: 5px;
+  margin: 0px 0;
+  font-size: 16px;
+  text-align: center;
+  justify-self: center;
+  align-self: center  ;
+  color: #0b0a0a;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#uploadForm {
+  align-items: center;
+  text-align: center;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-self: center;
+  justify-self: center;
+}
+
+
+
+/* Estilos para Imagenes en S3*/
 
 .s3-gallery {
   width: 80%;
@@ -432,39 +475,6 @@ a:hover {
 .s3-img img {
   width: 90%;
   max-width: 100%;
-}
-
-.frm-upload {
-  align-items: center;
-  text-align: center;
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-evenly;
-  align-self: center;
-  justify-self: center;
-}
-
-.inp-upload {
-  margin-left: 40% ; 
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-self: center;
-  justify-self: center;
-}
-
-.btn-upload {
-  width: 90px;
-  padding: 10px;
-  margin: 5px 0;
-  font-size: 16px;
-  text-align: center;
-  color: #0b0a0a;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 /* Estilos para Formulario CONTACTO */

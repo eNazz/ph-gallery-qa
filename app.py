@@ -71,7 +71,7 @@ class Contacto_c:
             return None
 
 
-cont = Contacto_c("database-1.cvqfbrdrc82t.us-east-1.rds.amazonaws.com", "5432", "codoacodo", "tpfinal_seula", "TpF1n4l!PyTh0n$3b4")
+cont = Contacto_c("os.getenv("DATABASE_HOST")", "5432", "codoacodo", "tpfinal_seula", "TpF1n4l!PyTh0n$3b4")
 
 
 @app.route('/', methods=['GET', 'POST'])
