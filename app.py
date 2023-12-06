@@ -18,6 +18,11 @@ import psycopg2
 
 
 # Configurar la conexión
+DATABASE_HOST = os.getenv("DATABASE_HOST")
+DATABASE_PORT = os.getenv("DATABASE_PORT")
+DATABASE_NAME = os.getenv("DATABASE_NAME")
+DATABASE_USER = os.getenv("DATABASE_USER")
+DATABASE_PASSWORD = os.getenv("DATABASE_PASSWORD")
 
 class Contacto_c:
     def __init__(self, host, port, database, user, password):
@@ -71,7 +76,7 @@ class Contacto_c:
             return None
 
 
-cont = Contacto_c("os.getenv("DATABASE_HOST")", "5432", "codoacodo", "tpfinal_seula", "TpF1n4l!PyTh0n$3b4")
+cont = Contacto_c(DATABASE_HOST, DATABASE_PORT, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD)
 
 
 @app.route('/', methods=['GET', 'POST'])
