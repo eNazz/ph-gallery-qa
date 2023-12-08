@@ -47,3 +47,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+#Archivos de configuracion 
+.env
